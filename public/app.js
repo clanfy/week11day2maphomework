@@ -1,10 +1,10 @@
 var init = function(){
   var container = document.getElementById('main-map');
-  var center = {lat: 51.5, lng: -0.127758};
-  var otherMarker = {lat: 51.5, lng: -0.2};
-  var mainMap = new MapWrapper(container, center, 10);
+  var center = {lat: 48.46464113630569, lng: -123.30790758132935};
+
+  var mainMap = new MapWrapper(container, center, 16);
   mainMap.addMarker(center);
-  mainMap.addMarker(otherMarker);
+
 
   mainMap.addClickEvent();
 
