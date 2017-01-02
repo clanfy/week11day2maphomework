@@ -11,17 +11,9 @@ MapWrapper.prototype = {
   addMarker: function(coords, information){
     var marker = new google.maps.Marker({
       position: coords, 
-      map: this.googleMap,
-      title: 'UVIC (Party Central)'
+      map: this.googleMap
     });
-
-    var infowindow = new google.maps.InfoWindow({
-      content: information
-    });
-
-    marker.addListener('click', function(){
-      infowindow.open(this.googleMap, marker);
-    });
+    return marker;
   },
   //binding .this, in this function to always be the map wrapper
   addClickEvent: function(){
@@ -31,9 +23,13 @@ MapWrapper.prototype = {
       this.addMarker(position);
     }.bind(this));
   },
-  createInfoWindow: function(){
-    var infowindow = new google.maps.InfoWindow({
-    content: "content string stuff" 
+  createInfoWindow: function(coords, information){
+    var marker = this.addMarker(coords);
+    marker.addListener('click', function(){
+      var infoWindow = new google.maps.InfoWindow({
+        content: information
+      });
+      infoWindow.open(this.googleMap, marker);
     });
   }
 
