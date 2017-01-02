@@ -1,9 +1,9 @@
 var MapWrapper = function(container, center, zoom){
 
-this.googleMap = new google.maps.Map(container, 
-{ center: center,
-  zoom: zoom }
-);
+  this.googleMap = new google.maps.Map(container, 
+    { center: center,
+      zoom: zoom }
+      );
 };
 
 MapWrapper.prototype = {
@@ -32,8 +32,13 @@ MapWrapper.prototype = {
       infoWindow.open(this.googleMap, marker);
     });
   },
-  goToVancouver: function(){
-    
+  geoLocate: function(){
+    navigator.geolocation.getCurrentPosition(function(position){
+      var center = {lat: position.coords.latitude, lng: position.coords.longitude};
+      console.log(center);
+      this.googleMap.setCenter(center);
+      this.addMarker(center);
+    }.bind(this));
   }
 
 };
