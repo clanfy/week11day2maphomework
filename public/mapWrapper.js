@@ -31,6 +31,9 @@ MapWrapper.prototype = {
       });
       infoWindow.open(this.googleMap, marker);
     });
+  },
+  goToVancouver: function(){
+    
   }
 
 };
